@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -199,7 +199,6 @@ namespace Truth_table
             {
                 if(groups.Count()==0)
                 {
-                    sb.Append(" ");
                     break;
                 }
                 int max = groups[0].size;
@@ -213,7 +212,9 @@ namespace Truth_table
                     }
                 }
                 Console.WriteLine($"{maxs.y1}.{maxs.x1},{maxs.y2}.{maxs.x2}");
-                sb.Append(maxs.result() + "+");
+                var res = maxs.result();
+                if(res!="")
+                sb.Append(res + "+");
                 maxs.set_used();
                 groups.Remove(maxs);
                 for (int i = 0; i < groups.Count();)
@@ -227,6 +228,7 @@ namespace Truth_table
                 }
                 if (groups.Count() == 0) break;
             }
+            if(sb.Length>0)
             textBox1.Text = sb.ToString(0, sb.Length - 1);
 
         }
