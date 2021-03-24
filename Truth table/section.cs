@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,6 +84,7 @@ namespace Truth_table
             bool changed = false;
             foreach (var j in c)
             {
+                if (!j.can_expand) continue;
                 if (j.can_move_left())
                 {
                     var s = j.clone;
@@ -139,7 +140,7 @@ namespace Truth_table
             {
                 for (int j = y1; ; j = tile(j + 1, max_y))
                 {
-                    if (map[i, j] != 1)
+                    if (map[i, j] == 0)
                     {
                         return false;
                     }
