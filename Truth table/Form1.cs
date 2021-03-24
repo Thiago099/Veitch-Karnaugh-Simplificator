@@ -53,7 +53,7 @@ namespace Truth_table
             var map = generate_map(size);
             panel1.Controls.Clear();
             int y = 0;
-            v=new int[map.Count(),map[0].Count()+1];
+            v = new int[map.Count(), map[0].Count() + 1];
             b = new Button[map.Count()];
             l = map[0].Count();
             for (int i = 0; i < map.Count(); i++)
@@ -67,8 +67,8 @@ namespace Truth_table
                     l.Height = 20;
                     v[i, j] = map[i][j] - '0';
                     l.Text = map[i][j].ToString();
-                    l.Left = x+20;
-                    l.Top = y+20;
+                    l.Left = x + 20;
+                    l.Top = y + 20;
                     x += 30;
                     panel1.Controls.Add(l);
 
@@ -76,13 +76,13 @@ namespace Truth_table
                 var bt = new Button();
                 bt.Text = "0";
                 panel1.Controls.Add(bt);
-                bt.Left = x+20;
-                bt.Top = y+15;
+                bt.Left = x + 20;
+                bt.Top = y + 15;
                 bt.Click += new System.EventHandler(this.button1_Click);
                 b[i] = bt;
                 y += 30;
             }
-            
+
 
         }
 
@@ -188,16 +188,16 @@ namespace Truth_table
                 }
             }
             groups = section.expand(groups);
-            for (int i = 0; i < groups.Count();)
+            for (int i = 0; i < groups.Count;)
             {
-                if (groups[i].size % 2 == 1 && groups[i].size != 1) groups.RemoveAt(i);
+                if (!IsPowerOfTwo(groups[i].size) && groups[i].size != 1) groups.RemoveAt(i);
                 else i++;
             }
             sb = new StringBuilder();
 
             while (true)
             {
-                if(groups.Count()==0)
+                if (groups.Count() == 0)
                 {
                     break;
                 }
@@ -213,8 +213,8 @@ namespace Truth_table
                 }
                 Console.WriteLine($"{maxs.y1}.{maxs.x1},{maxs.y2}.{maxs.x2}");
                 var res = maxs.result();
-                if(res!="")
-                sb.Append(res + "+");
+                if (res != "")
+                    sb.Append(res + "+");
                 maxs.set_used();
                 groups.Remove(maxs);
                 for (int i = 0; i < groups.Count();)
@@ -232,6 +232,10 @@ namespace Truth_table
                 textBox1.Text = sb.ToString(0, sb.Length - 1);
             else textBox1.Text = "";
 
+        }
+        bool IsPowerOfTwo(int x)
+        {
+            return (x != 0) && ((x & (x - 1)) == 0);
         }
     }
 }
