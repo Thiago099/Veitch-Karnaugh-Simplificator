@@ -228,8 +228,9 @@ namespace Truth_table
                 }
                 if (groups.Count() == 0) break;
             }
-            if(sb.Length>0)
-            textBox1.Text = sb.ToString(0, sb.Length - 1);
+            if (sb.Length > 0)
+                textBox1.Text = sb.ToString(0, sb.Length - 1);
+            else textBox1.Text = "";
 
         }
     }
