@@ -109,16 +109,20 @@ namespace Truth_table
         private void button1_Click(object sender, EventArgs e)
         {
             Button s = (Button)sender;
-            if (s.Text == "0") s.Text = "1";
-            else s.Text = "0";
+            switch(s.Text)
+            {
+                case "0": s.Text = "1"; break;
+                case "1": s.Text = "X"; break;
+                case "X": s.Text = "0"; break;
+
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             for (int i = 0; i < b.Length; i++)
             {
-
-                v[i, l] = b[i].Text[0] - '0';
+                v[i, l] = b[i].Text[0] == 'X'? '2': b[i].Text[0] - '0';
             }
             var r = v.GetLength(1) - 1;
             var l1 = r / 2;
