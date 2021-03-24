@@ -190,7 +190,7 @@ namespace Truth_table
             groups = section.expand(groups);
             for (int i = 0; i < groups.Count;)
             {
-                if (!IsPowerOfTwo(groups[i].size) && groups[i].size != 1) groups.RemoveAt(i);
+                if (!IsPowerOfTwo(groups[i].size)) groups.RemoveAt(i);
                 else i++;
             }
             sb = new StringBuilder();
