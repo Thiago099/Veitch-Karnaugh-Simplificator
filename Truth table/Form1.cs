@@ -122,7 +122,7 @@ namespace Truth_table
         {
             for (int i = 0; i < b.Length; i++)
             {
-                v[i, l] = b[i].Text[0] == 'X'? '2': b[i].Text[0] - '0';
+                v[i, l] = b[i].Text[0] == 'X'? 2: b[i].Text[0] - '0';
             }
             var r = v.GetLength(1) - 1;
             var l1 = r / 2;
