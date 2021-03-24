@@ -36,6 +36,19 @@ namespace Truth_table
                 }
             }
             return lines;
+        }
+        List<string> generate_unsorted(int c)
+        {
+            var p = 2;//number of values
+            List<string> lines = new List<string>();
+            for (int i = 0; i < Math.Pow(p, c); i++)
+            {
+                var sb = new StringBuilder();
+                for (int k = 1; k < c + 1; k++)
+                    sb.Append((int)(i / Math.Pow(p, k - 1) % p));
+                lines.Add(sb.ToString());
+            }
+            return lines;
 
         }
         void swap<T>(List<T> l, int a, int b)
@@ -50,7 +63,7 @@ namespace Truth_table
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             var size = (int)numericUpDown1.Value;
-            var map = generate_map(size);
+            var map = generate_unsorted(size);
             panel1.Controls.Clear();
             int y = 0;
             v = new int[map.Count(), map[0].Count() + 1];
