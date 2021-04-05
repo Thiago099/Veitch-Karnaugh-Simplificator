@@ -20,8 +20,26 @@ namespace Truth_table
             => y1 == y2 ? 1 : y2 > y1 ? y2 - y1 + 1 : max_y - y1 + y2 + 1;
         public int width
             => x1 == x2 ? 1 : x2 > x1 ? x2 - x1 + 1 : max_x - x1 + x2 + 1;
-        public int size
+        public int true_size
                 => width * height;
+
+        public int size
+        {
+            get
+            {
+                int ret = 0;
+                for (int i = x1; ; i = tile(i + 1, max_x))
+                {
+                    for (int j = y1; ; j = tile(j + 1, max_y))
+                    {
+                        if (needed[i, j]) ret++;
+                        if (j == y2) break;
+                    }
+                    if (i == x2) break;
+                }
+                return ret;
+            }
+        }
 
         public int x1;
         public int y1;
