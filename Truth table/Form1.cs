@@ -226,13 +226,29 @@ namespace Truth_table
                     break;
                 }
                 int max = groups[0].size;
-                section maxs = groups[0];
+                List<section> maxg = new List<section>();
+                maxg.Add(groups[0]);
                 for (int i = 1; i < groups.Count(); i++)
                 {
-                    if (groups[i].size > max)
+                    var s = groups[i].size;
+                    if (s > max)
                     {
                         max = groups[i].size;
-                        maxs = groups[i];
+                        maxg = new List<section>();
+                        maxg.Add(groups[i]);
+                    }
+                    else if(s==max)
+                    {
+                        maxg.Add(groups[i]);
+                    }
+                }
+                max = maxg[0].true_size;
+                section maxs = maxg[0];
+                for (int i = 1; i < maxg.Count; i++)
+                {
+                    if(maxg[i].true_size>max)
+                    {
+                        maxs = maxg[i];
                     }
                 }
                 Console.WriteLine($"{maxs.y1}.{maxs.x1},{maxs.y2}.{maxs.x2}");
